@@ -1,0 +1,6 @@
+{
+  "name": "Éclat Express",
+  "description": "Boutique en ligne festive pour le réveillon du 31 décembre : packs prêts à poser, guirlandes et bougies LED avec livraison express.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

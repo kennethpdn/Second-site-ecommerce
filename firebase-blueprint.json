@@ -1,0 +1,155 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "Category for products in Éclat Express",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "maxLength": 64 },
+        "nom": { "type": "string", "maxLength": 100 },
+        "icone": { "type": "string", "maxLength": 64 },
+        "ordre": { "type": "number" }
+      },
+      "required": ["slug", "nom", "icone", "ordre"]
+    },
+    "Produit": {
+      "title": "Produit",
+      "description": "Product sold in the store",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "maxLength": 100 },
+        "nom": { "type": "string", "maxLength": 200 },
+        "categorieSlug": { "type": "string", "maxLength": 64 },
+        "prix": { "type": "number" },
+        "prixBarre": { "type": "number" },
+        "badge": { "type": "string", "enum": ["best-seller", "nouveau", "promo"] },
+        "descriptionCourte": { "type": "string", "maxLength": 500 },
+        "descriptionLongue": { "type": "string", "maxLength": 4000 },
+        "images": { "type": "array" },
+        "stock": { "type": "number" },
+        "livrableAvant31": { "type": "boolean" },
+        "populaire": { "type": "boolean" },
+        "actif": { "type": "boolean" }
+      },
+      "required": ["slug", "nom", "categorieSlug", "prix", "stock", "actif"]
+    },
+    "Pack": {
+      "title": "Pack",
+      "description": "Bundle pack containing multiple products",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "maxLength": 100 },
+        "nom": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "prix": { "type": "number" },
+        "prixBarre": { "type": "number" },
+        "image": { "type": "string", "maxLength": 1000 },
+        "actif": { "type": "boolean" },
+        "produits": { "type": "array" }
+      },
+      "required": ["slug", "nom", "prix", "actif", "produits"]
+    },
+    "Avis": {
+      "title": "Avis",
+      "description": "Verified customer review",
+      "type": "object",
+      "properties": {
+        "produitId": { "type": "string", "maxLength": 100 },
+        "auteur": { "type": "string", "maxLength": 100 },
+        "note": { "type": "number" },
+        "texte": { "type": "string", "maxLength": 1000 },
+        "valide": { "type": "boolean" }
+      },
+      "required": ["produitId", "auteur", "note", "texte", "valide"]
+    },
+    "ConfigSite": {
+      "title": "ConfigSite",
+      "description": "Site public configuration",
+      "type": "object",
+      "properties": {
+        "deadlineCommande": { "type": "string", "maxLength": 100 },
+        "seuilLivraisonOfferte": { "type": "number" },
+        "numeroWhatsApp": { "type": "string", "maxLength": 50 },
+        "delaiLivraison": { "type": "string", "maxLength": 100 },
+        "zones": { "type": "string", "maxLength": 500 },
+        "modePaiement": { "type": "string", "maxLength": 500 },
+        "retours": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "Commande": {
+      "title": "Commande",
+      "description": "Customer order",
+      "type": "object",
+      "properties": {
+        "numero": { "type": "string", "maxLength": 64 },
+        "nom": { "type": "string", "maxLength": 128 },
+        "telephone": { "type": "string", "maxLength": 32 },
+        "adresse": { "type": "string", "maxLength": 500 },
+        "creneau": { "type": "string", "maxLength": 64 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "total": { "type": "number" },
+        "statut": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string" },
+        "lignes": { "type": "array" }
+      },
+      "required": ["numero", "nom", "telephone", "adresse", "total", "statut", "lignes"]
+    },
+    "DemandePro": {
+      "title": "DemandePro",
+      "description": "B2B quote request",
+      "type": "object",
+      "properties": {
+        "nom": { "type": "string", "maxLength": 128 },
+        "societe": { "type": "string", "maxLength": 128 },
+        "telephone": { "type": "string", "maxLength": 32 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["nom", "societe", "telephone", "message"]
+    },
+    "Newsletter": {
+      "title": "Newsletter",
+      "description": "Newsletter subscriber",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 255 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Public store categories"
+    },
+    "/produits/{produitId}": {
+      "schema": "Produit",
+      "description": "Public active products"
+    },
+    "/packs/{packId}": {
+      "schema": "Pack",
+      "description": "Public active bundles"
+    },
+    "/avis/{aviId}": {
+      "schema": "Avis",
+      "description": "Validated customer reviews"
+    },
+    "/config/{configId}": {
+      "schema": "ConfigSite",
+      "description": "Site global parameters"
+    },
+    "/commandes/{commandeId}": {
+      "schema": "Commande",
+      "description": "Orders created solely by the backend"
+    },
+    "/demandesPro/{demandeId}": {
+      "schema": "DemandePro",
+      "description": "B2B quote submissions handled by backend"
+    },
+    "/newsletter/{subscriberId}": {
+      "schema": "Newsletter",
+      "description": "Newsletter subscribers handled by backend"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --blanc-casse: #F5F7FA;
+    --blanc: #FFFFFF;
+    --nuit-800: #0B1B33;
+    --nuit-900: #060F1F;
+    --ardoise-500: #46536B;
+    --argent-400: #C7CCD1;
+    --argent-200: #EBECEF;
+    --champagne: #D9C2A3;
+    --urgence: #C1121F;
+  }
+
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--blanc-casse);
+    color: var(--nuit-800);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .font-signature {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Design System Utilities */
+.shadow-card {
+  box-shadow: 0 4px 16px rgba(11, 27, 51, 0.08);
+}
+
+.shadow-card-hover {
+  transition: all 180ms ease-out;
+}
+
+.shadow-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(11, 27, 51, 0.12);
+}
+
+.btn-primary {
+  height: 52px;
+  background-color: var(--nuit-800);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  transition: background-color 150ms ease;
+}
+
+.btn-primary:hover {
+  background-color: #162a4a;
+}
+
+.badge-champagne {
+  background-color: var(--champagne);
+  color: var(--nuit-800);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.badge-urgence {
+  background-color: var(--urgence);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Custom scrollbar for horizontal categories */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* backInDown animation */
+@keyframes backInDown {
+  0% {
+    transform: translateY(-700px) scale(0.7);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateY(0px) scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-backInDown,
+.backInDown {
+  animation: backInDown 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* backInLeft animation */
+@keyframes backInLeft {
+  0% {
+    transform: translateX(-700px) scale(0.7);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateX(0px) scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-backInLeft,
+.backInLeft {
+  animation: backInLeft 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
